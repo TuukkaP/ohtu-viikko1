@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class VarastoTest {
-
+// TÄNNE TULI UUSI KOMMENTTI.
     Varasto varasto;
     Varasto negvarasto;
     double vertailuTarkkuus = 0.0001;
