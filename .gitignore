@@ -1,2 +1,4 @@
 Target/*
 *.xxx
+Target/
+OhtuVarasto/target/
