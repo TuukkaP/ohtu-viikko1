@@ -13,16 +13,23 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto negvarasto;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        negvarasto = new Varasto(-2.0);
     }
 
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void konstruktoriLuoMiinusVaraston() {
+        assertEquals(0, negvarasto.getTilavuus(), vertailuTarkkuus);
     }
 
     @Test
@@ -36,6 +43,22 @@ public class VarastoTest {
 
         // saldon pitäisi olla sama kun lisätty määrä
         assertEquals(8, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+        @Test
+    public void laitonLisays() {
+        varasto.lisaaVarastoon(-1.0);
+
+        // saldon pitäisi olla sama kun lisätty määrä
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+        
+                @Test
+    public void laitonOtto() {
+        double otto = varasto.otaVarastosta(-1.0);
+
+        // saldon pitäisi olla sama kun lisätty määrä
+        assertEquals(0.0, otto, vertailuTarkkuus);
     }
 
     @Test
@@ -66,13 +89,30 @@ public class VarastoTest {
     }
 
     @Test
+    public void suurilisaysLisaaSaldoa() {
+        varasto.lisaaVarastoon(100);
+
+        // saldon pitäisi olla sama kun lisätty määrä
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+        @Test
+    public void suurilisaysLisaaSaldoaJaOtetaanKaikki() {
+        varasto.lisaaVarastoon(100);
+
+        // saldon pitäisi olla sama kun lisätty määrä
+        varasto.otaVarastosta(12);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
-        varasto = new Varasto(1,1);
-        varasto = new Varasto(1,2);
-        varasto = new Varasto(-1,2);
-        varasto = new Varasto(-1,-1);
+        varasto = new Varasto(1, 1);
+        varasto = new Varasto(1, 2);
+        varasto = new Varasto(-1, 2);
+        varasto = new Varasto(-1, -1);
         varasto.toString();
     }
 }
